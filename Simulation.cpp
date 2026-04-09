@@ -8,13 +8,59 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
 
+bool Overlap(Animal* a, Animal* b)
+{
+    if (a->getX() + a->getSize() < b->getX())
+    {
+        return false;
+    }
+    if (b->getX() + b->getSize() < a->getX())
+    {
+        return false;
+    }
 
-bool UniquePosition(std::vector<Predator*>& predators, std::vector<Prey*>preys, int x, int y)
+    if (a->getY() + a->getSize() < b->getY())
+    {
+        return false;
+    }
+    if (b->getY() + b->getSize() < a->getY())
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool Overlap(int x, int y, int size, Animal* b)
+{
+    if (x + size < b->getX())
+    {
+        return false;
+    }
+    if (b->getX() + b->getSize() < x)
+    {
+        return false;
+    }
+
+    if (y + size < b->getY())
+    {
+        return false;
+    }
+    if (b->getY() + b->getSize() < y)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool UniquePosition(std::vector<Predator*>& predators, std::vector<Prey*>preys, int x, int y, int size)
 {
     for (int i = 0; i < predators.size(); i++)
     {
-        if (predators[i]->getX() == x && predators[i]->getY() == y)
+        if (Overlap(x, y, size, predators[i]))
         {
             return false;
         }
@@ -22,7 +68,7 @@ bool UniquePosition(std::vector<Predator*>& predators, std::vector<Prey*>preys, 
 
     for (int i = 0; i < preys.size(); i++)
     {
-        if (preys[i]->getX() == x && preys[i]->getY() == y)
+        if (Overlap(x, y, size, preys[i]))
         {
             return false;
         }
@@ -37,7 +83,7 @@ void PopulatePredators(std::vector<Predator*>&predators, std::vector<Prey*>&prey
     {
         int x = rand() % 800;
         int y = rand() % 600;
-        while (!UniquePosition(predators, preys, x, y))
+        while (!UniquePosition(predators, preys, x, y, 20))
         {
             x = rand() % 800;
             y = rand() % 600;
@@ -55,7 +101,7 @@ void PopulatePreys(std::vector<Predator*>& predators, std::vector<Prey*>&preys, 
     {
         int x = rand() % 800;
         int y = rand() % 600;
-        while (!UniquePosition(predators, preys, x, y))
+        while (!UniquePosition(predators, preys, x, y, 10))
         {
             x = rand() % 800;
             y = rand() % 600;
@@ -64,6 +110,50 @@ void PopulatePreys(std::vector<Predator*>& predators, std::vector<Prey*>&preys, 
         Prey* p = new Prey(rand() % 10 + 10, 100, 100, name, x, y);
         preys.push_back(p);
     }
+}
+
+
+
+Prey* ClosestPrey(Predator* pred, std::vector<Prey*> prey)
+{
+    if (prey.size() == 0)
+    {
+        return nullptr;
+    }
+
+
+    Prey* closest = prey[0];
+    double minDistance = Distance(pred->getX(), closest->getX(), pred->getY(), closest->getY());
+    for (int i = 0; i < prey.size(); i++)
+    {
+        if (Distance(pred->getX(), prey[i]->getX(), pred->getY(), prey[i]->getY()) < minDistance){
+            closest = prey[i];
+            minDistance = Distance(pred->getX(), prey[i]->getX(), pred->getY(), prey[i]->getY());
+        }
+    }
+
+    return closest;
+}
+
+Predator* ClosestPredator(Prey* prey, std::vector<Predator*> pred)
+{
+    if (pred.size() == 0)
+    {
+        return nullptr;
+    }
+
+
+    Predator* closest = pred[0];
+    double minDistance = Distance(prey->getX(), closest->getX(), prey->getY(), closest->getY());
+    for (int i = 0; i < pred.size(); i++)
+    {
+        if (Distance(prey->getX(), pred[i]->getX(), prey->getY(), pred[i]->getY()) < minDistance) {
+            closest = pred[i];
+            minDistance = Distance(prey->getX(), pred[i]->getX(), prey->getY(), pred[i]->getY());
+        }
+    }
+
+    return closest;
 }
 
 void DisplayPredators(std::vector<Predator*>animals, sf::RenderWindow* window)
@@ -114,6 +204,10 @@ int main()
         window.clear();
         DisplayPredators(predators, &window);
         DisplayPreys(preys, &window);
+        for (int x = 0; x < preys.size(); x++)
+        {
+            preys[x]->Move(ClosestPredator(preys[x], predators));
+        }
         // Update the window
         window.display();
     }
