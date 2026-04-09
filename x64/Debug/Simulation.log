@@ -1,0 +1,47 @@
+﻿  Animal.cpp
+  Predator.cpp
+  Prey.cpp
+  Simulation.cpp
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(73,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(73,90): warning C4244:         with
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(73,90): warning C4244:         [
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(73,90): warning C4244:             T=float
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(73,90): warning C4244:         ]
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(73,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(73,67): warning C4244:         with
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(73,67): warning C4244:         [
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(73,67): warning C4244:             T=float
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(73,67): warning C4244:         ]
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(75,77): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(75,77): warning C4244:         with
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(75,77): warning C4244:         [
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(75,77): warning C4244:             T=float
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(75,77): warning C4244:         ]
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(75,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(75,57): warning C4244:         with
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(75,57): warning C4244:         [
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(75,57): warning C4244:             T=float
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(75,57): warning C4244:         ]
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(85,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(85,90): warning C4244:         with
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(85,90): warning C4244:         [
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(85,90): warning C4244:             T=float
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(85,90): warning C4244:         ]
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(85,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(85,67): warning C4244:         with
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(85,67): warning C4244:         [
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(85,67): warning C4244:             T=float
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(85,67): warning C4244:         ]
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(87,77): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(87,77): warning C4244:         with
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(87,77): warning C4244:         [
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(87,77): warning C4244:             T=float
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(87,77): warning C4244:         ]
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(87,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(87,57): warning C4244:         with
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(87,57): warning C4244:         [
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(87,57): warning C4244:             T=float
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(87,57): warning C4244:         ]
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(95,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
+  Simulation.vcxproj -> C:\Users\tyree\source\repos\Simulation\Simulation\x64\Debug\Simulation.exe
