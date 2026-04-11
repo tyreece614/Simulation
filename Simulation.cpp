@@ -10,6 +10,12 @@
 #include <ctime>
 #include <cmath>
 
+
+enum State {
+    MENU,
+    SIMULATION
+};
+
 bool Overlap(Animal* a, Animal* b)
 {
     if (a->getX() + a->getSize() < b->getX())
@@ -189,6 +195,20 @@ int main()
     PopulatePreys(predators, preys, 10);
 
     sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "Game");
+    State state = MENU;
+    sf::Font font("ARIAL.TTF");
+    sf::RectangleShape inputbox1(sf::Vector2f(100, 30));
+    sf::RectangleShape inputbox2(sf::Vector2f(100, 30));
+    inputbox1.setPosition(sf::Vector2f(100, 100));
+    inputbox2.setPosition(sf::Vector2f(100, 200));
+    std::string input1, input2;
+    sf::Text text1(font, "", 24);
+    sf::Text text2(font, "", 24);
+    text1.setPosition(sf::Vector2f(105, 105));
+    text2.setPosition(sf::Vector2f(105, 205));
+    int activeBox = 0;
+
+    
     // Start the game loop
     while (window.isOpen())
     {
@@ -198,37 +218,51 @@ int main()
             // Close window: exit
             if (event->is<sf::Event::Closed>())
                 window.close();
-        }
-
-        // Clear screen
-        window.clear();
-        DisplayPredators(predators, &window);
-        DisplayPreys(preys, &window);
-        for (int x = 0; x < preys.size(); x++)
-        {
-            preys[x]->Move(ClosestPredator(preys[x], predators));
-        }
-
-        for (int i = 0; i < predators.size(); i++)
-        {
-            predators[i]->Move(ClosestPrey(predators[i], preys));
-        }
-
-        for (int i = preys.size() - 1; i >= 0; i--)
-        {
-            for (int j = 0; j < predators.size(); j++)
+            if (state == MENU)
             {
-                if (Overlap(preys[i], predators[j]))
-                {
-                    preys.erase(preys.begin() + i);
-                    break;
-                }
+                if (event->is<sf::Event::MouseButtonPressed>());
             }
         }
-        // Update the window
-        window.display();
+        if (state == MENU)
+        {
+            window.clear();
+            window.draw(inputbox1);
+            window.draw(inputbox2);
+            window.display();
+        }
+
+        else
+        {
+            // Clear screen
+            window.clear();
+            DisplayPredators(predators, &window);
+            DisplayPreys(preys, &window);
+            for (int x = 0; x < preys.size(); x++)
+            {
+                preys[x]->Move(ClosestPredator(preys[x], predators));
+            }
+
+            for (int i = 0; i < predators.size(); i++)
+            {
+                predators[i]->Move(ClosestPrey(predators[i], preys));
+            }
+
+            for (int i = preys.size() - 1; i >= 0; i--)
+            {
+                for (int j = 0; j < predators.size(); j++)
+                {
+                    if (Overlap(preys[i], predators[j]))
+                    {
+                        preys.erase(preys.begin() + i);
+                        break;
+                    }
+                }
+            }
+            // Update the window
+            window.display();
+        }
+
     }
-    
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
