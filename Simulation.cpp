@@ -191,28 +191,44 @@ int main()
     std::srand(std::time(nullptr));
     std::vector<Predator*>predators;
     std::vector<Prey*>preys;
-    PopulatePredators(predators, preys, 5);
-    PopulatePreys(predators, preys, 10);
-
+   
+    
     sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "Game");
     State state = MENU;
     sf::Font font("ARIAL.TTF");
+    sf::Text title(font, "Predator/Prey Simulation", 36);
+    title.setPosition(sf::Vector2f(100, 50));
+    title.setFillColor(sf::Color::Black);
+    sf::Text predatorTitle(font, "Number of Predators", 24);
+    predatorTitle.setPosition(sf::Vector2f(100, 150));
+    predatorTitle.setFillColor(sf::Color::Black);
+    sf::Text preyTitle(font, "Number of Preys", 24);
+    preyTitle.setPosition(sf::Vector2f(100, 250));
+    preyTitle.setFillColor(sf::Color::Black);
     sf::RectangleShape inputbox1(sf::Vector2f(100, 30));
     sf::RectangleShape inputbox2(sf::Vector2f(100, 30));
-    inputbox1.setPosition(sf::Vector2f(100, 100));
-    inputbox2.setPosition(sf::Vector2f(100, 200));
+    inputbox1.setPosition(sf::Vector2f(100, 200));
+    inputbox2.setPosition(sf::Vector2f(100, 300));
+    inputbox1.setOutlineThickness(2);
+    inputbox2.setOutlineThickness(2);
+    inputbox1.setOutlineColor(sf::Color::Black);
+    inputbox2.setOutlineColor(sf::Color::Black);
     std::string input1, input2;
     sf::Text text1(font, "", 24);
     sf::Text text2(font, "", 24);
-    text1.setFillColor(sf::Color::Red);
-    text2.setFillColor(sf::Color::Red);
-    text1.setPosition(sf::Vector2f(105, 105));
-    text2.setPosition(sf::Vector2f(105, 205));
+    text1.setFillColor(sf::Color::Black);
+    text2.setFillColor(sf::Color::Black);
+    text1.setPosition(sf::Vector2f(105, 203));
+    text2.setPosition(sf::Vector2f(105, 303));
     int activeBox = 0;
     sf::RectangleShape button(sf::Vector2f(100, 50));
-    button.setPosition(sf::Vector2f(100, 300));
+    button.setPosition(sf::Vector2f(100, 400));
     button.setFillColor(sf::Color::Green);
     sf::Text buttonText(font, "start", 24);
+    buttonText.setPosition(sf::Vector2f(110, 410));
+    buttonText.setFillColor(sf::Color::Black);
+
+
 
     
     // Start the game loop
@@ -240,6 +256,15 @@ int main()
                     else
                     {
                         activeBox = 0;
+                    }
+                    if (button.getGlobalBounds().contains(position))
+                    {
+                        if (!input1.empty() && !input2.empty())
+                        {
+                            state = SIMULATION;
+                            PopulatePredators(predators, preys, std::stoi(input1));
+                            PopulatePreys(predators, preys, std::stoi(input2));
+                        }
                     }
                 }
 
@@ -282,18 +307,24 @@ int main()
         }
         if (state == MENU)
         {
-            window.clear();
+            window.clear(sf::Color::White);
             window.draw(inputbox1);
             window.draw(inputbox2);
             window.draw(text1);
             window.draw(text2);
+            window.draw(button);
+            window.draw(buttonText);
+            window.draw(title);
+            window.draw(preyTitle);
+            window.draw(predatorTitle);
             window.display();
+          
         }
 
         else
         {
             // Clear screen
-            window.clear();
+            window.clear(sf::Color::White);
             DisplayPredators(predators, &window);
             DisplayPreys(preys, &window);
             for (int x = 0; x < preys.size(); x++)

@@ -40,6 +40,6 @@ C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(183,
 C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(183,57): warning C4244:             T=float
 C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(183,57): warning C4244:         ]
 C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(191,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(257,33): warning C4244: 'initializing': conversion from 'const char32_t' to 'char', possible loss of data
-C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(305,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(286,33): warning C4244: 'initializing': conversion from 'const char32_t' to 'char', possible loss of data
+C:\Users\tyree\source\repos\Simulation\Simulation\Simulation\Simulation.cpp(340,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Simulation.vcxproj -> C:\Users\tyree\source\repos\Simulation\Simulation\x64\Debug\Simulation.exe

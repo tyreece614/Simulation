@@ -30,8 +30,8 @@ void Predator::Move(Prey* m)
 
 	dx = dx / minDistance;
 	dy = dy / minDistance;
-	setX(getX() + dx * 2);
-	setY(getY() + dy * 2);
+	setX(getX() + dx * 1);
+	setY(getY() + dy * 1);
 
 	if (getX() < 0)
 	{

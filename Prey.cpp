@@ -18,8 +18,8 @@ void Prey::Move(Predator* m)
 		double dy = getY() - m->getY();
 		dx = dx / minDistance;
 		dy = dy / minDistance;
-		setX(getX() + dx * 5);
-		setY(getY() + dy * 5);
+		setX(getX() + dx * 3);
+		setY(getY() + dy * 3);
 		
 	}
 
