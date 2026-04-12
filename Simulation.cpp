@@ -209,6 +209,10 @@ int main()
     text1.setPosition(sf::Vector2f(105, 105));
     text2.setPosition(sf::Vector2f(105, 205));
     int activeBox = 0;
+    sf::RectangleShape button(sf::Vector2f(100, 50));
+    button.setPosition(sf::Vector2f(100, 300));
+    button.setFillColor(sf::Color::Green);
+    sf::Text buttonText(font, "start", 24);
 
     
     // Start the game loop
