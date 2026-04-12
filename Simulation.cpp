@@ -204,6 +204,8 @@ int main()
     std::string input1, input2;
     sf::Text text1(font, "", 24);
     sf::Text text2(font, "", 24);
+    text1.setFillColor(sf::Color::Red);
+    text2.setFillColor(sf::Color::Red);
     text1.setPosition(sf::Vector2f(105, 105));
     text2.setPosition(sf::Vector2f(105, 205));
     int activeBox = 0;
@@ -220,7 +222,58 @@ int main()
                 window.close();
             if (state == MENU)
             {
-                if (event->is<sf::Event::MouseButtonPressed>());
+                if (event->is<sf::Event::MouseButtonPressed>())
+                {
+                    sf::Vector2f position = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+                    if (inputbox1.getGlobalBounds().contains(position))
+                    {
+                        activeBox = 1;
+                    }
+                    else if (inputbox2.getGlobalBounds().contains(position))
+                    {
+                        activeBox = 2;
+                    }
+                    else
+                    {
+                        activeBox = 0;
+                    }
+                }
+
+                if (event->is<sf::Event::TextEntered>())
+                {
+                    if (activeBox != 0)
+                    {
+                        std::string* currentString = nullptr;
+                        if (activeBox == 1)
+                        {
+                            currentString = &input1;
+                        }
+                        else if (activeBox == 2)
+                        {
+                            currentString = &input2;
+                        }
+                       
+
+                      char code = event->getIf<sf::Event::TextEntered>()->unicode;
+                      std::cout << "You entered: " << code << std::endl;
+                      if (code >= '0' && code <= '9')
+                      {
+                          *currentString += code;
+                      }
+                      else if (code == 8 && !currentString->empty())
+                      {
+                          currentString->pop_back();
+                      }
+                      std::cout << "Input 1: " << input1 << std::endl;
+                      std::cout << "Input 2: " << input2 << std::endl;
+                      text1.setString(input1);
+                      text2.setString(input2);
+
+                    }
+
+
+                    
+                }
             }
         }
         if (state == MENU)
@@ -228,6 +281,8 @@ int main()
             window.clear();
             window.draw(inputbox1);
             window.draw(inputbox2);
+            window.draw(text1);
+            window.draw(text2);
             window.display();
         }
 
