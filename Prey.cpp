@@ -7,10 +7,24 @@ Prey::Prey(int Health, int Hunger, int Thirst, std::string name, int X, int Y) :
 {
 	setColor(sf::Color::Green);
 	setSize(10);
+	cooldown = 0;
+}
+
+void Prey::setCooldown(int cool)
+{
+	cooldown = cool;
+}
+
+int Prey::getCooldown()
+{
+	return cooldown;
 }
 
 void Prey::Move(Predator* m)
 {
+
+	cooldown--;
+
 	double minDistance = Distance(getX(), m->getX(), getY(), m->getY());
 	if (minDistance < 100)
 	{

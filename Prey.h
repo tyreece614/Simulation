@@ -4,9 +4,12 @@
 class Predator;
 class Prey : public Animal
 {
+private:
+	int cooldown;
 public:
 	Prey(int Health, int Hunger, int Thrist, std::string name, int X, int Y);
-	
 	void Move(Predator* m);
+	void setCooldown(int cool);
+	int getCooldown();
 
 };

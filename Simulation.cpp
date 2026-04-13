@@ -13,7 +13,8 @@
 
 enum State {
     MENU,
-    SIMULATION
+    SIMULATION,
+    END
 };
 
 bool Overlap(Animal* a, Animal* b)
@@ -188,15 +189,20 @@ void DisplayPreys(std::vector<Prey*>animals, sf::RenderWindow* window)
 
 int main()
 {
+    int numIterations = 0;
     std::srand(std::time(nullptr));
     std::vector<Predator*>predators;
     std::vector<Prey*>preys;
-   
+    
+
     
     sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "Game");
     State state = MENU;
     sf::Font font("ARIAL.TTF");
     sf::Text title(font, "Predator/Prey Simulation", 36);
+    sf::Text endText(font, "Simulation Over", 36);
+    endText.setPosition(sf::Vector2f(100, 200));
+    endText.setFillColor(sf::Color::Black);
     title.setPosition(sf::Vector2f(100, 50));
     title.setFillColor(sf::Color::Black);
     sf::Text predatorTitle(font, "Number of Predators", 24);
@@ -234,12 +240,30 @@ int main()
     // Start the game loop
     while (window.isOpen())
     {
+        numIterations++;
+        if (numIterations > 20000)
+        {
+            state = END;
+        }
         // Process events
         while (const std::optional event = window.pollEvent())
         {
             // Close window: exit
             if (event->is<sf::Event::Closed>())
+            {
+                window.clear();
+                for (int x = 0; x < preys.size(); x++)
+                {
+                    delete preys[x];
+                }
+                for (int i = 0; i < predators.size(); i++)
+                {
+                    delete predators[i];
+                }
+
                 window.close();
+            }
+               
             if (state == MENU)
             {
                 if (event->is<sf::Event::MouseButtonPressed>())
@@ -320,7 +344,21 @@ int main()
             window.display();
           
         }
-
+        else if (state == END)
+        {
+            window.clear(sf::Color::White);
+            if (preys.size() == 0)
+            {
+                endText.setString("Simulation Over\nAll the preys were killed");
+            }
+            else
+            {
+                endText.setString("Simulation Over\nThe preys survived");
+            }
+            window.draw(endText);
+            window.display();
+            
+        }
         else
         {
             // Clear screen
@@ -345,6 +383,20 @@ int main()
                     {
                         preys.erase(preys.begin() + i);
                         break;
+                    }
+                }
+
+            }
+            for (int i = 0; i < preys.size(); i++)
+            {
+                for (int j = i + 1; j < preys.size(); j++)
+                {
+                    if (Overlap(preys[i], preys[j]) && preys[i]->getCooldown() <= 0 && preys[j]->getCooldown() <= 0)
+                    {
+                        Prey* p = new Prey(rand() % 10 + 10, 100, 100, "prey", preys[i]->getX(), preys[i]->getY());
+                        preys.push_back(p);
+                        preys[i]->setCooldown(1000);
+                        preys[j]->setCooldown(1000);
                     }
                 }
             }
